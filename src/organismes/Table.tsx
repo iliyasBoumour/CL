@@ -107,6 +107,8 @@ export const Table: FC<Props> = ({ requestedOffers }) => {
               <TableCell align="right">
                 {request.status === RequestStatus.ACCEPTE ? (
                   <Alert severity="success">Accepte</Alert>
+                ) : request.status === RequestStatus.REFUSE ? (
+                  <Alert severity="error">Refuse</Alert>
                 ) : (
                   <Actions>
                     <Button
