@@ -8,6 +8,7 @@ export const fetchAPI = async <T>(path: string): Promise<T> => {
     const { data } = await axios.get(`${process.env.REACT_APP_API_URL}${path}`);
     return data;
   } catch (error: any) {
+    console.log(error);
     if (error?.response?.status === 401) {
       Emitter.emit(UNAUTHORIZED);
     }
