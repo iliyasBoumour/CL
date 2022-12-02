@@ -74,9 +74,9 @@ export const Table: FC<Props> = ({ requestedOffers }) => {
           {requestedOffers.map((request) => (
             <TableRow key={request.id}>
               <TableCell component="th" scope="row">
-                {request.offer.title}
+                {request.offerName}
               </TableCell>
-              <TableCell>{request.user.name}</TableCell>
+              <TableCell>{request.requestor}</TableCell>
               <TableCell align="right">
                 <Actions>
                   <Button

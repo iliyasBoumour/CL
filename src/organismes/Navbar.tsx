@@ -17,7 +17,7 @@ export const Navbar = () => {
   const [currentUser, setcurrentUser] = useState<User | null>(null);
   const { state, dispatch } = useContext(Store);
   const {
-    auth: { token },
+    auth: { token, user },
   } = state;
 
   const signOut = useCallback(() => {
@@ -25,13 +25,12 @@ export const Navbar = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const user = token ? null : { id: '1', name: 'iliyas' };
     if (!user) {
       return;
     }
     setcurrentUser(user);
     setNavLinks([...links, { to: '/demands', name: 'Demandes' }]);
-  }, [token]);
+  }, [token, user]);
 
   return (
     <Container>

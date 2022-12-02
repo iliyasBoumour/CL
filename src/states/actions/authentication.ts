@@ -1,10 +1,10 @@
 import { handleErrors } from './handleErrors';
-import { ActionsType, Dispatch, User } from '../../lib/interfaces';
+import { ActionsType, Dispatch } from '../../lib/interfaces';
 import { postAPI } from '../../utility/fetcher';
 
 export const signIn = async (dispatch: Dispatch, user: any) => {
   try {
-    const data = await postAPI<User>(`/auth/login`, user);
+    const data = await postAPI<any>(`/auth/login`, user);
     dispatch({
       type: ActionsType.USER_LOGIN,
       payload: {

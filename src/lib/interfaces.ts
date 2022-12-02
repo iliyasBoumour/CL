@@ -1,9 +1,15 @@
 import { Dispatch as ReactDisparch } from 'react';
 
 // Models
+export enum Roles {
+  ROLE_MEMBRE = 'ROLE_MEMBRE',
+  ROLE_REPRESENTANT = 'ROLE_REPRESENTANT',
+}
+
 export interface User {
   id: string;
-  name: string;
+  username: string;
+  role: Roles[];
 }
 
 export interface Offer {
@@ -20,9 +26,8 @@ export interface OfferCategory {
 
 export interface RequestedOffer {
   id: string;
-  offer: Offer;
-  user: User;
-  status: string;
+  offerName: string;
+  requestor: string;
 }
 
 // States
@@ -30,6 +35,7 @@ export interface RequestedOffer {
 export interface AppState {
   auth: {
     token: string | null;
+    user: User | null;
     error?: string;
   };
   offers: {

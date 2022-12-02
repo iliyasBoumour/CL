@@ -52,7 +52,7 @@ export const NavMenu: FC<Props> = ({ links, user, onLogout }) => {
               onClick={showUserMenu}
               endIcon={<KeyboardArrowDownIcon color="inherit" />}
             >
-              {user.name}
+              {user.username}
             </NavButton>
             <MuiMenu
               anchorEl={anchorEl}
