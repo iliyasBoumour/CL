@@ -1,14 +1,28 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
+import { useSnackbar } from 'notistack';
 import { Box, styled, Typography } from '@mui/material';
 import { Image } from '../atoms/Image';
 import { Button } from '../atoms/Button';
+import { useDemandOffer } from '../hooks/useDemandOffer';
+import { Offer } from '../lib/interfaces';
 
-interface Props {
-  title: string;
-  description: string;
-}
+export const MaterialCard: FC<Offer> = ({ id, title, description }) => {
+  const { requestOffer } = useDemandOffer();
+  const { enqueueSnackbar } = useSnackbar();
 
-export const MaterialCard: FC<Props> = ({ title, description }) => {
+  const handleDemand = useCallback(async () => {
+    const result = await requestOffer(id);
+    if (result !== false) {
+      enqueueSnackbar('Demande envoyée', {
+        variant: 'success',
+      });
+    } else {
+      enqueueSnackbar('Demande non envoyée', {
+        variant: 'error',
+      });
+    }
+  }, [enqueueSnackbar, id, requestOffer]);
+
   return (
     <MaterialContainer>
       <ImageContainer>
@@ -24,7 +38,9 @@ export const MaterialCard: FC<Props> = ({ title, description }) => {
           </Description>
         </TextContainer>
         <ButtonContainer>
-          <Button color="secondary">Demander</Button>
+          <Button color="secondary" onClick={handleDemand}>
+            Demander
+          </Button>
         </ButtonContainer>
       </Content>
     </MaterialContainer>
