@@ -1,15 +1,6 @@
 import { forwardRef, FC } from 'react';
-import {
-  Slide,
-  DialogTitle,
-  DialogContent,
-  Dialog,
-  DialogActions,
-  styled,
-} from '@mui/material';
+import { Slide, DialogTitle, Dialog, styled } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { Button } from '../atoms/Button';
-import { TextField } from '../atoms/TextField';
 import { Loader } from '../atoms/Loader';
 
 const Transition = forwardRef(function Transition(
@@ -25,16 +16,16 @@ interface Props {
   title: string;
   open: boolean;
   onClose: () => void;
-  onSuccessfulSubmit: () => void;
   loading: boolean;
+  children: React.ReactNode;
 }
 
 export const Popup: FC<Props> = ({
   title,
   open,
   onClose,
-  onSuccessfulSubmit,
   loading,
+  children,
 }) => {
   return (
     <div>
@@ -44,26 +35,12 @@ export const Popup: FC<Props> = ({
         keepMounted
         onClose={onClose}
       >
-        <DialogTitle>{title}</DialogTitle>
         {loading ? (
           <Loader />
         ) : (
           <>
-            <DialogContent>
-              <TextField fullWidth multiline minRows={4} placeholder={title} />
-            </DialogContent>
-            <Actions>
-              <Button onClick={onClose} color="secondary">
-                Disagree
-              </Button>
-              <Button
-                onClick={onSuccessfulSubmit}
-                color="secondary"
-                variant="contained"
-              >
-                Envoyer
-              </Button>
-            </Actions>
+            <DialogTitle>{title}</DialogTitle>
+            {children}
           </>
         )}
       </StyledDialog>
@@ -77,8 +54,4 @@ const StyledDialog = styled(Dialog)`
     max-width: 900px;
     padding: 1rem 0.5rem;
   }
-`;
-
-const Actions = styled(DialogActions)`
-  padding: 0.5rem 2rem;
 `;

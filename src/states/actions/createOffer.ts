@@ -1,8 +1,16 @@
-import { ActionsType, Dispatch, Offer } from '../../lib/interfaces';
+import {
+  OfferWithCategory,
+  ActionsType,
+  Dispatch,
+  Offer,
+} from '../../lib/interfaces';
 import { postAPI } from '../../utility/fetcher';
 import { handleErrors } from './handleErrors';
 
-export const createOffer = async (dispatch: Dispatch, offer: Offer) => {
+export const createOffer = async (
+  dispatch: Dispatch,
+  offer: OfferWithCategory,
+) => {
   try {
     const data = await postAPI<Offer>(`/offers`, offer);
     dispatch({

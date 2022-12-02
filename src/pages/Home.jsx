@@ -22,22 +22,24 @@ export const Home = () => {
         ) : !offers ? (
           <Loader />
         ) : (
-          <>
-            <Grid container spacing={7} mb={4}>
-              {offers?.map((p) => (
-                <Grid item key={p.title} xs={12} md={6}>
-                  <MaterialCard {...p} />
-                </Grid>
-              ))}
-            </Grid>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => navigate('/offers')}
-            >
-              Voir toutes les offres
-            </Button>
-          </>
+          offers.length && (
+            <>
+              <Grid container spacing={7} mb={4}>
+                {offers?.map((p) => (
+                  <Grid item key={p.title} xs={12} md={6}>
+                    <MaterialCard {...p} />
+                  </Grid>
+                ))}
+              </Grid>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={() => navigate('/offers')}
+              >
+                Voir toutes les offres
+              </Button>
+            </>
+          )
         )}
       </Container>
     </div>

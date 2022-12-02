@@ -8,6 +8,8 @@ import {
   TableRow,
   Paper,
   styled,
+  DialogContent,
+  DialogActions,
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { RequestedOffer } from '../lib/interfaces';
@@ -15,6 +17,7 @@ import { Button } from '../atoms/Button';
 import { Popup } from '../molecules/Popup';
 import { useDeclineOffer } from '../hooks/useDeclineOffer';
 import { useAcceptOffer } from '../hooks/useAcceptOffer';
+import { TextField } from '../atoms/TextField';
 
 interface Props {
   requestedOffers: RequestedOffer[];
@@ -60,8 +63,31 @@ export const Table: FC<Props> = ({ requestedOffers }) => {
         open={openPopup}
         loading={loading}
         onClose={closePopup}
-        onSuccessfulSubmit={rejectDemand}
-      />
+      >
+        <>
+          <DialogContent>
+            <TextField
+              fullWidth
+              multiline
+              minRows={4}
+              placeholder="Raison de refus"
+              required
+            />
+          </DialogContent>
+          <PopupActions>
+            <Button onClick={closePopup} color="secondary">
+              Disagree
+            </Button>
+            <Button
+              onClick={rejectDemand}
+              color="secondary"
+              variant="contained"
+            >
+              Envoyer
+            </Button>
+          </PopupActions>
+        </>
+      </Popup>
       <MuiTable>
         <TableHead>
           <TableRow>
@@ -112,4 +138,8 @@ const Actions = styled('div')`
     padding: 0.5em 1em;
     font-size: 0.75rem;
   }
+`;
+
+const PopupActions = styled(DialogActions)`
+  padding: 0.5rem 2rem;
 `;

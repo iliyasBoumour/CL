@@ -18,6 +18,10 @@ export interface Offer {
   description: string;
 }
 
+export interface OfferWithCategory extends Offer {
+  categoriesId: string[];
+}
+
 export interface OfferCategory {
   id: string;
   name: string;
