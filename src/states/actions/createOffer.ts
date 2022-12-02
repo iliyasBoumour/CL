@@ -10,9 +10,10 @@ import { handleErrors } from './handleErrors';
 export const createOffer = async (
   dispatch: Dispatch,
   offer: OfferWithCategory,
+  token: string | null,
 ) => {
   try {
-    const data = await postAPI<Offer>(`/offers`, offer);
+    const data = await postAPI<Offer>(`/offers`, offer, token);
     dispatch({
       type: ActionsType.CREATE_OFFER,
       payload: data,

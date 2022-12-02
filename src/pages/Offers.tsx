@@ -18,7 +18,12 @@ export const Offers = () => {
   const [searchKey, setSearchKey] = useState('');
   const [showCreationPopup, setShowCreationPopup] = useState(false);
   const [formCategories, setFormCategories] = useState<string[]>([]);
-  const { dispatch } = useContext(Store);
+  const {
+    state: {
+      auth: { token },
+    },
+    dispatch,
+  } = useContext(Store);
   const { offers, error } = useOffers();
   const { categories, error: errorCategories } = useOfferCategories();
   const {
@@ -38,9 +43,9 @@ export const Offers = () => {
   const createNewOffer = useCallback(
     (data: any) => {
       setShowCreationPopup(false);
-      createOffer(dispatch, { ...data, categoriesId: formCategories });
+      createOffer(dispatch, { ...data, categoriesId: formCategories }, token);
     },
-    [dispatch, formCategories],
+    [dispatch, formCategories, token],
   );
 
   if (error || errorCategories) {
