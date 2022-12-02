@@ -4,7 +4,7 @@ import { handleErrors } from './handleErrors';
 
 export const getDemands = async (dispatch: Dispatch, token: string | null) => {
   try {
-    const data = await fetchAPI<RequestedOffer[]>(`/demands`, token);
+    const data = await fetchAPI<RequestedOffer[]>(`/demandes`, token);
     dispatch({
       type: ActionsType.GET_DEMANDS,
       payload: data,

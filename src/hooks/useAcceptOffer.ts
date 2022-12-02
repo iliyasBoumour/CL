@@ -12,7 +12,7 @@ export const useAcceptOffer = () => {
 
   const acceptOffer = async (offerId: string) => {
     try {
-      await postAPI<boolean>(`/offers/${offerId}/accept`, {}, token);
+      await postAPI<boolean>(`/demandes/${offerId}/accept`, {}, token);
     } catch (err: any) {
       setError(getAxiosError(err));
     } finally {
