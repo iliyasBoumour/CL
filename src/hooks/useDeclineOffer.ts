@@ -12,7 +12,7 @@ export const useDeclineOffer = () => {
 
   const declineOffer = async (offerId: string) => {
     try {
-      await postAPI<boolean>(`/offers/${offerId}/decline`, {}, token);
+      await postAPI<boolean>(`/demandes/${offerId}/reject`, {}, token);
     } catch (err: any) {
       setError(getAxiosError(err));
     } finally {
