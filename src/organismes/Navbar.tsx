@@ -1,15 +1,16 @@
 import { useEffect, useState, useContext, useCallback } from 'react';
-// import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import { styled } from '@mui/material';
-import { Store } from '../../states/Store';
-import logo from '../../assets/images/logo.png';
-import { NavMenu } from '../../molecules/NavMenu';
-import { User } from '../../lib/interfaces';
-import { logout } from '../../states/actions/authentication';
+import { NavLink as Link } from 'react-router-dom';
+import { Store } from '../states/Store';
+import logo from '../assets/images/logo.png';
+import { NavMenu } from '../molecules/NavMenu';
+import { User } from '../lib/interfaces';
+import { logout } from '../states/actions/authentication';
+import { ScrollToTop } from '../atoms/ScrollToTop';
 
 export const NAVBAR_HEIGHT = '80px';
 
-const links = [{ to: '/', name: 'Offres' }];
+const links = [{ to: '/offers', name: 'Offres' }];
 
 export const Navbar = () => {
   const [navLinks, setNavLinks] = useState(links);
@@ -24,21 +25,24 @@ export const Navbar = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const user = token ? { id: '1', name: 'iliyas' } : null;
+    const user = token ? null : { id: '1', name: 'iliyas' };
     if (!user) {
       return;
     }
     setcurrentUser(user);
-    setNavLinks([...links, { to: '/demandes', name: 'Demandes' }]);
+    setNavLinks([...links, { to: '/demands', name: 'Demandes' }]);
   }, [token]);
 
   return (
     <Container>
+      <ScrollToTop />
       <NavContainer>
         <Nav>
-          <NavLogo>
-            <img src={logo} alt="logo" />
-          </NavLogo>
+          <Link to="/">
+            <NavLogo>
+              <img src={logo} alt="logo" />
+            </NavLogo>
+          </Link>
           <NavMenu user={currentUser} links={navLinks} onLogout={signOut} />
         </Nav>
       </NavContainer>

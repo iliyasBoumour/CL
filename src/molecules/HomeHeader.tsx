@@ -1,9 +1,12 @@
 import { styled, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import bg from '../assets/images/bg.jpg';
 import { Button } from '../atoms/Button';
 import { NAVBAR_HEIGHT } from '../organismes/Navbar';
 
 export const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <ImageContainer>
       <ImageTop>
@@ -14,7 +17,7 @@ export const Header = () => {
           <Typography color="primary" variant="h4">
             Echanger le pour un autre.
           </Typography>
-          <Button>Voir les offres</Button>
+          <Button onClick={() => navigate('/offers')}>Voir les offres</Button>
         </TextContainer>
       </ImageTop>
     </ImageContainer>

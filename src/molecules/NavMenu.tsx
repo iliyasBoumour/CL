@@ -64,7 +64,7 @@ export const NavMenu: FC<Props> = ({ links, user, onLogout }) => {
           </>
         ) : (
           <NavButton>
-            <Link to="/login">
+            <Link to="/login" onClick={handleOpenBurgerMenu}>
               <PersonOutlineIcon sx={{ cursor: 'pointer' }} />
             </Link>
           </NavButton>

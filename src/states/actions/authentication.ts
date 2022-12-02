@@ -1,9 +1,10 @@
-import axios from 'axios';
-import { ActionsType, Dispatch } from '../../lib/interfaces';
+import { handleErrors } from './handleErrors';
+import { ActionsType, Dispatch, User } from '../../lib/interfaces';
+import { postAPI } from '../../utility/fetcher';
 
-export const signin = async (dispatch: Dispatch, user: any) => {
+export const signIn = async (dispatch: Dispatch, user: any) => {
   try {
-    const { data } = await axios.post(`/api/auth/login`, user);
+    const data = await postAPI<User>(`/auth/login`, user);
     dispatch({
       type: ActionsType.USER_LOGIN,
       payload: {
@@ -11,28 +12,10 @@ export const signin = async (dispatch: Dispatch, user: any) => {
       },
     });
   } catch (error: any) {
-    dispatch({
-      type: ActionsType.USER_LOGIN_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+    handleErrors(dispatch, ActionsType.USER_LOGIN_FAIL, error);
   }
 };
-export const signup = async (dispatch: Dispatch, user: any) => {
-  try {
-    await axios.post(`/api/auth/register`, user);
-  } catch (error: any) {
-    dispatch({
-      type: ActionsType.USER_LOGIN_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+
 export const logout = (dispatch: Dispatch) => {
   dispatch({
     type: ActionsType.USER_LOGOUT,
