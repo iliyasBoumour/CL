@@ -31,6 +31,12 @@ export interface RequestedOffer {
   id: string;
   offerName: string;
   requestor: string;
+  status: RequestStatus;
+}
+
+export enum RequestStatus {
+  ACCEPTE = 'ACCEPTE',
+  REFUSE = 'REFUSE',
 }
 
 // States

@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext, useCallback } from 'react';
 import { styled } from '@mui/material';
-import { NavLink as Link } from 'react-router-dom';
+import { NavLink as Link, useNavigate } from 'react-router-dom';
 import { Store } from '../states/Store';
 import logo from '../assets/images/logo.png';
 import { NavMenu } from '../molecules/NavMenu';
@@ -13,6 +13,7 @@ export const NAVBAR_HEIGHT = '80px';
 const links = [{ to: '/offers', name: 'Offres' }];
 
 export const Navbar = () => {
+  const navigate = useNavigate();
   const [navLinks, setNavLinks] = useState(links);
   const [currentUser, setcurrentUser] = useState<User | null>(null);
   const { state, dispatch } = useContext(Store);
@@ -22,7 +23,8 @@ export const Navbar = () => {
 
   const signOut = useCallback(() => {
     logout(dispatch);
-  }, [dispatch]);
+    navigate('/login');
+  }, [dispatch, navigate]);
 
   useEffect(() => {
     if (!user) {

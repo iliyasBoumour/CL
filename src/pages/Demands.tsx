@@ -15,13 +15,14 @@ export const Demands = () => {
   return (
     <div>
       <SideBar title="Demandes" items={sideBarItems} />
-      {error ? (
-        <Alert severity="error">Une erreur est survenue</Alert>
-      ) : (
-        <Container>
+
+      <Container>
+        {error ? (
+          <Alert severity="error">Une erreur est survenue</Alert>
+        ) : (
           <Table requestedOffers={demands} />
-        </Container>
-      )}
+        )}
+      </Container>
     </div>
   );
 };

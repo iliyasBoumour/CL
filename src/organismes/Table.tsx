@@ -10,9 +10,10 @@ import {
   styled,
   DialogContent,
   DialogActions,
+  Alert,
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { RequestedOffer } from '../lib/interfaces';
+import { RequestedOffer, RequestStatus } from '../lib/interfaces';
 import { Button } from '../atoms/Button';
 import { Popup } from '../molecules/Popup';
 import { useDeclineOffer } from '../hooks/useDeclineOffer';
@@ -104,24 +105,28 @@ export const Table: FC<Props> = ({ requestedOffers }) => {
               </TableCell>
               <TableCell>{request.requestor}</TableCell>
               <TableCell align="right">
-                <Actions>
-                  <Button
-                    variant="contained"
-                    color="success"
-                    size="small"
-                    onClick={() => acceptOffer(request.id)}
-                  >
-                    Accepter
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="error"
-                    size="small"
-                    onClick={() => showPopup(request.id)}
-                  >
-                    Refuser
-                  </Button>
-                </Actions>
+                {request.status === RequestStatus.ACCEPTE ? (
+                  <Alert severity="success">Accepte</Alert>
+                ) : (
+                  <Actions>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      size="small"
+                      onClick={() => acceptOffer(request.id)}
+                    >
+                      Accepter
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      size="small"
+                      onClick={() => showPopup(request.id)}
+                    >
+                      Refuser
+                    </Button>
+                  </Actions>
+                )}
               </TableCell>
             </TableRow>
           ))}
