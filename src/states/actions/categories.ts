@@ -4,7 +4,7 @@ import { fetchAPI } from '../../utility/fetcher';
 
 export const getOfferCategories = async (dispatch: Dispatch) => {
   try {
-    const data = await fetchAPI<OfferCategory>(`/offers/categories`);
+    const data = await fetchAPI<OfferCategory>(`/categories`);
     dispatch({
       type: ActionsType.GET_CATEGORIES,
       payload: data,

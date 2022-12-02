@@ -7,9 +7,7 @@ export const getOffers = async (dispatch: Dispatch) => {
     const data = await fetchAPI<Offer[]>(`/offers`);
     dispatch({
       type: ActionsType.GET_OFFERS,
-      payload: {
-        ...data,
-      },
+      payload: data,
     });
   } catch (error: any) {
     handleErrors(dispatch, ActionsType.GET_OFFERS_FAIL, error);
