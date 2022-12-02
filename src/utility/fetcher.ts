@@ -3,8 +3,14 @@ import { Emitter } from './EventLEmitter';
 
 export const UNAUTHORIZED = 'UNAUTHORIZED';
 
-export const fetchAPI = async <T>(path: string): Promise<T> => {
+export const fetchAPI = async <T>(
+  path: string,
+  token?: string | null,
+): Promise<T> => {
   try {
+    if (token) {
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    }
     const { data } = await axios.get(`${process.env.REACT_APP_API_URL}${path}`);
     return data;
   } catch (error: any) {

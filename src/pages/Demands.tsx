@@ -1,6 +1,6 @@
-import { styled } from '@mui/material';
+import { Alert, styled } from '@mui/material';
 import React from 'react';
-import { demands } from '../data/demands';
+import { useDemands } from '../hooks/useDemands';
 import { SideBar, SIDEBAR_WIDTH } from '../molecules/SideBar';
 import { Table } from '../organismes/Table';
 
@@ -11,12 +11,17 @@ const sideBarItems = [
 ];
 
 export const Demands = () => {
+  const { demands, error } = useDemands();
   return (
     <div>
       <SideBar title="Demandes" items={sideBarItems} />
-      <Container>
-        <Table requestedOffers={demands} />
-      </Container>
+      {error ? (
+        <Alert severity="error">Une erreur est survenue</Alert>
+      ) : (
+        <Container>
+          <Table requestedOffers={demands} />
+        </Container>
+      )}
     </div>
   );
 };

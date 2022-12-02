@@ -45,6 +45,10 @@ export interface AppState {
     data: Offer[];
     error?: string;
   };
+  demands: {
+    data: RequestedOffer[];
+    error?: string;
+  };
   categories: {
     data: OfferCategory[] | null;
     error?: string;
@@ -83,6 +87,9 @@ export enum ActionsType {
 
   GET_CATEGORIES = 'GET_CATEGORIES',
   GET_CATEGORIES_FAIL = 'GET_CATEGORIES_FAIL',
+
+  GET_DEMANDS = 'GET_DEMANDS',
+  GET_DEMANDS_FAIL = 'GET_DEMANDS_FAIL',
 }
 
 export type Dispatch = ReactDisparch<Action>;
