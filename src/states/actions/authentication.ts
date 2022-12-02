@@ -4,10 +4,7 @@ import { postAPI } from '../../utility/fetcher';
 
 export const signIn = async (dispatch: Dispatch, user: any) => {
   try {
-    const data = await postAPI<any>(
-      `${process.env.REACT_APP_API_URL}/authentication/connexion`,
-      user,
-    );
+    const data = await postAPI<any>(`/authentication/connexion`, user);
     dispatch({
       type: ActionsType.USER_LOGIN,
       payload: {
