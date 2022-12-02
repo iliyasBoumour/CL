@@ -24,7 +24,7 @@ export const Home = () => {
         ) : (
           <>
             <Grid container spacing={7} mb={4}>
-              {offers.map((p) => (
+              {offers?.map((p) => (
                 <Grid item key={p.title} xs={12} md={6}>
                   <MaterialCard {...p} />
                 </Grid>

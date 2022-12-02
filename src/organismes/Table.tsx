@@ -71,7 +71,7 @@ export const Table: FC<Props> = ({ requestedOffers }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {requestedOffers.map((request) => (
+          {requestedOffers?.map((request) => (
             <TableRow key={request.id}>
               <TableCell component="th" scope="row">
                 {request.offerName}
