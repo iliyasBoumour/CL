@@ -69,8 +69,8 @@ export const Offers = () => {
                   errors={errors}
                 />
                 <ControlledTextField
-                  type="description"
-                  name="password"
+                  type="text"
+                  name="description"
                   control={control}
                   errors={errors}
                 />
