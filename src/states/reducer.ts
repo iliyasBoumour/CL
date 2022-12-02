@@ -14,6 +14,24 @@ const reducer = (state: AppState, { type, payload }: Action) => {
       localStorage.removeItem('token');
       return { ...state, auth: { token: null } };
     }
+
+    case ActionsType.GET_OFFERS: {
+      return { ...state, offers: { data: payload } };
+    }
+    case ActionsType.GET_OFFERS_FAIL: {
+      return { ...state, offers: { error: payload, data: null } };
+    }
+    // case ActionsType.DEMAND_OFFER_FAIL: {
+    //   return { ...state, offers: { error: payload } };
+    // }
+
+    case ActionsType.GET_CATEGORIES: {
+      return { ...state, categories: { data: payload } };
+    }
+    case ActionsType.GET_CATEGORIES_FAIL: {
+      return { ...state, categories: { error: payload, data: null } };
+    }
+
     default:
       return state;
   }

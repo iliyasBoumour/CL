@@ -18,6 +18,19 @@ const theme = createTheme({
           margin: 0,
           padding: 0,
         },
+        '::-webkit-scrollbar': {
+          width: '5px',
+          height: '5px',
+        },
+        '::-webkit-scrollbar-track': {
+          background: '#f1f1f1',
+          borderRadius: '20px',
+        },
+        '::-webkit-scrollbar-thumb': {
+          background: '#888',
+          borderRadius: '20px',
+        },
+        scrollbarColor: '#888 transparent',
         html: {
           MozOsxFontSmoothing: 'grayscale',
           WebkitFontSmoothing: 'antialiased',
@@ -99,6 +112,8 @@ const theme = createTheme({
       main: '#fff',
     },
     secondary: {
+      light: '#f2f2f2',
+      dark: '#ccc',
       main: '#000',
     },
     success: {
