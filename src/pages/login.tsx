@@ -21,6 +21,7 @@ export const Login = () => {
   const { dispatch, state } = useContext(Store);
 
   const login = async (data: any) => {
+    console.log(data);
     closeSnackbar();
     signIn(dispatch, data);
   };
@@ -48,7 +49,7 @@ export const Login = () => {
               Connectez-vous et échangez vos matériaux dès maintenant
             </Typography>
             <Box>
-              <Typography variant="subtitle1">Email: user@gmail.com</Typography>
+              <Typography variant="subtitle1">username: user</Typography>
               <Typography variant="subtitle1">Password: 123456</Typography>
             </Box>
           </LeftPaper>
@@ -58,8 +59,8 @@ export const Login = () => {
             <Typography variant="h3">Se connecter</Typography>
             <Form onSubmit={handleSubmit(login)}>
               <ControlledTextField
-                type="email"
-                name="email"
+                type="username"
+                name="username"
                 control={control}
                 errors={errors}
               />
