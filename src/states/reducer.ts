@@ -21,11 +21,12 @@ const reducer = (state: AppState, { type, payload }: Action) => {
       return { ...state, offers: { data: payload } };
     }
     case ActionsType.GET_OFFERS_FAIL: {
-      return { ...state, offers: { error: payload, data: null } };
+      return { ...state, offers: { error: payload, data: [] } };
     }
-    // case ActionsType.DEMAND_OFFER_FAIL: {
-    //   return { ...state, offers: { error: payload } };
-    // }
+
+    case ActionsType.CREATE_OFFER: {
+      return { ...state, offers: { data: [...state.offers.data, payload] } };
+    }
 
     case ActionsType.GET_CATEGORIES: {
       return { ...state, categories: { data: payload } };

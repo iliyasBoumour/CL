@@ -9,8 +9,8 @@ export const initialState: AppState = {
     token,
     user: user ? JSON.parse(user) : null,
   },
-  offers: { data: null },
-  categories: { data: null },
+  offers: { data: [] },
+  categories: { data: [] },
 };
 
 export const Store = createContext<{

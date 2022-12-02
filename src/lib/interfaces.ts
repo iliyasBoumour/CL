@@ -16,7 +16,6 @@ export interface Offer {
   id: string;
   title: string;
   description: string;
-  image: string;
 }
 
 export interface OfferCategory {
@@ -39,7 +38,7 @@ export interface AppState {
     error?: string;
   };
   offers: {
-    data: Offer[] | null;
+    data: Offer[];
     error?: string;
   };
   categories: {
@@ -74,6 +73,9 @@ export enum ActionsType {
 
   DEMAND_OFFER = 'DEMAND_OFFER',
   DEMAND_OFFER_FAIL = 'DEMAND_OFFER_FAIL',
+
+  CREATE_OFFER = 'CREATE_OFFER',
+  CREATE_OFFER_FAIL = 'CREATE_OFFER_FAIL',
 
   GET_CATEGORIES = 'GET_CATEGORIES',
   GET_CATEGORIES_FAIL = 'GET_CATEGORIES_FAIL',

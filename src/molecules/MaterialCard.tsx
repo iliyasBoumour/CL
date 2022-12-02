@@ -4,16 +4,15 @@ import { Image } from '../atoms/Image';
 import { Button } from '../atoms/Button';
 
 interface Props {
-  image: string;
   title: string;
   description: string;
 }
 
-export const MaterialCard: FC<Props> = ({ image, title, description }) => {
+export const MaterialCard: FC<Props> = ({ title, description }) => {
   return (
     <MaterialContainer>
       <ImageContainer>
-        <Image src={image} alt={title} />
+        <Image src="https://picsum.photos/200/300" alt={title} />
       </ImageContainer>
       <Content>
         <TextContainer>
