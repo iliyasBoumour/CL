@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useContext, useEffect } from 'react';
 import {
   Box,
@@ -9,19 +8,20 @@ import {
   Typography,
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { Button } from '../atoms/Button';
 import { Store } from '../states/Store';
 import { signIn } from '../states/actions/authentication';
-import { NAVBAR_HEIGHT } from '../organismes/Navbar';
 import { ControlledTextField } from '../atoms/ControlledTextField';
+import { NAVBAR_HEIGHT } from '../organismes/Navbar';
 
 export const Login = () => {
+  const navigate = useNavigate();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { dispatch, state } = useContext(Store);
 
   const login = async (data: any) => {
-    console.log(data);
     closeSnackbar();
     signIn(dispatch, data);
   };
@@ -39,6 +39,12 @@ export const Login = () => {
       });
     }
   }, [enqueueSnackbar, state.auth]);
+
+  useEffect(() => {
+    if (state.auth.token) {
+      navigate('/');
+    }
+  }, [navigate, state.auth.token]);
 
   return (
     <Container maxWidth="lg">
