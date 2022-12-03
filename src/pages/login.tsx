@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import {
-  Box,
   Container as MuiContainer,
   Grid,
   Paper,
@@ -54,10 +53,6 @@ export const Login = () => {
             <Typography variant="h4">
               Connectez-vous et échangez vos matériaux dès maintenant
             </Typography>
-            <Box>
-              <Typography variant="subtitle1">username: user</Typography>
-              <Typography variant="subtitle1">Password: 123456</Typography>
-            </Box>
           </LeftPaper>
         </Grid>
         <Grid item xs={12} md={6}>
