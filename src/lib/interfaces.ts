@@ -20,7 +20,12 @@ export interface Offer {
 }
 
 export interface MyOffers extends Offer {
-  archiver: boolean;
+  archived: boolean;
+}
+
+export enum MyOffersFilters {
+  ALL = 'ALL',
+  ARCHIVED = 'ARCHIVED',
 }
 
 export interface OfferWithCategory extends Offer {

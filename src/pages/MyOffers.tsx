@@ -1,7 +1,7 @@
 import { Alert, Autocomplete, styled } from '@mui/material';
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-// import { MyOffers as MyOffersType } from '../lib/interfaces';
+import { MyOffers as MyOffersType, MyOffersFilters } from '../lib/interfaces';
 import { Button } from '../atoms/Button';
 import { ControlledTextField } from '../atoms/ControlledTextField';
 import { TextField } from '../atoms/TextField';
@@ -13,11 +13,12 @@ import { SIDEBAR_WIDTH } from '../molecules/SideBar';
 import { MyOffersTable } from '../organismes/MyOffersTable';
 import { createOffer } from '../states/actions/createOffer';
 import { Store } from '../states/Store';
+import { ToggleButton } from '../molecules/ToggleButton';
 
 export const MyOffers = () => {
   const [showCreationPopup, setShowCreationPopup] = useState(false);
-  // const [filtredOffers, setFiltredOffers] = useState<MyOffersType[]>([]);
-  // const [showArchivedOffers, setShowArchivedOffers] = useState(false);
+  const [filtredOffers, setFiltredOffers] = useState<MyOffersType[]>([]);
+  const [filters, setFilters] = useState<MyOffersFilters>(MyOffersFilters.ALL);
   const [formCategories, setFormCategories] = useState<string[]>([]);
   const { categories } = useOfferCategories();
   const deleteOffer = useDeleteOffer();
@@ -42,6 +43,17 @@ export const MyOffers = () => {
     },
     [dispatch, formCategories, token],
   );
+
+  useEffect(() => {
+    if (!myOffers) return;
+    switch (filters) {
+      case MyOffersFilters.ARCHIVED:
+        setFiltredOffers(myOffers.filter((offer) => offer.archived));
+        break;
+      default:
+        setFiltredOffers(myOffers);
+    }
+  }, [myOffers, filters]);
 
   return (
     <Container>
@@ -90,11 +102,17 @@ export const MyOffers = () => {
         >
           Ajouter une offre
         </Button>
+
+        <ToggleButton
+          options={[MyOffersFilters.ALL, MyOffersFilters.ARCHIVED]}
+          onChange={(value) => setFilters(value as MyOffersFilters)}
+          value={filters}
+        />
       </ActionsContainer>
       {error ? (
         <Alert severity="error">{error}</Alert>
       ) : (
-        <MyOffersTable offers={myOffers} deleteOffer={deleteOffer} />
+        <MyOffersTable offers={filtredOffers} deleteOffer={deleteOffer} />
       )}
     </Container>
   );
