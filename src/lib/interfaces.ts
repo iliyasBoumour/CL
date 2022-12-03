@@ -29,7 +29,7 @@ export enum MyOffersFilters {
 }
 
 export interface OfferWithCategory extends Offer {
-  categoriesId: string[];
+  categoryIds: string[];
 }
 
 export interface OfferCategory {

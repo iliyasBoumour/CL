@@ -26,7 +26,7 @@ export const Offers = () => {
     } else {
       setFiltredOffers(
         offers.filter((offer) =>
-          offer.categoriesId.some((id) => id === selectedCategoryId),
+          offer.categoryIds.some((id) => id === selectedCategoryId),
         ),
       );
     }
