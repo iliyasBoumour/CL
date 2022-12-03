@@ -16,6 +16,11 @@ export interface Offer {
   id: string;
   title: string;
   description: string;
+  categoryIds: string[];
+}
+
+export interface MyOffers extends Offer {
+  archiver: boolean;
 }
 
 export interface OfferWithCategory extends Offer {
@@ -52,7 +57,7 @@ export interface AppState {
     error?: string;
   };
   myOffers: {
-    data: Offer[];
+    data: MyOffers[];
     error?: string;
   };
   demands: {

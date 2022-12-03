@@ -8,12 +8,12 @@ import {
   TableRow,
   Paper,
 } from '@mui/material';
-import { Offer } from '../lib/interfaces';
+import { MyOffers } from '../lib/interfaces';
 import { Button } from '../atoms/Button';
 
 interface Props {
   deleteOffer: (id: string) => void;
-  offers: Offer[];
+  offers: MyOffers[];
 }
 
 export const MyOffersTable: FC<Props> = ({ offers, deleteOffer }) => {

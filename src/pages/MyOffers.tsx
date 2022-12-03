@@ -1,6 +1,7 @@
 import { Alert, Autocomplete, styled } from '@mui/material';
 import React, { useCallback, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+// import { MyOffers as MyOffersType } from '../lib/interfaces';
 import { Button } from '../atoms/Button';
 import { ControlledTextField } from '../atoms/ControlledTextField';
 import { TextField } from '../atoms/TextField';
@@ -15,6 +16,8 @@ import { Store } from '../states/Store';
 
 export const MyOffers = () => {
   const [showCreationPopup, setShowCreationPopup] = useState(false);
+  // const [filtredOffers, setFiltredOffers] = useState<MyOffersType[]>([]);
+  // const [showArchivedOffers, setShowArchivedOffers] = useState(false);
   const [formCategories, setFormCategories] = useState<string[]>([]);
   const { categories } = useOfferCategories();
   const deleteOffer = useDeleteOffer();
