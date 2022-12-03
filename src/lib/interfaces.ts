@@ -42,6 +42,7 @@ export interface RequestedOffer {
   offerName: string;
   requestor: string;
   status: RequestStatus;
+  archived: boolean;
 }
 
 export enum RequestStatus {
@@ -58,7 +59,7 @@ export interface AppState {
     error?: string;
   };
   offers: {
-    data: Offer[];
+    data: OfferWithCategory[];
     error?: string;
   };
   myOffers: {

@@ -10,16 +10,19 @@ interface Props {
     name: string;
     id: string;
   }[];
+  onSelect: (id: string) => void;
 }
 
-export const SideBar: FC<Props> = ({ title, items }) => {
+export const SideBar: FC<Props> = ({ title, items, onSelect }) => {
   return (
     <Bar>
       <Typography variant="h4" mb={2}>
         {title}
       </Typography>
       {items.map((item) => (
-        <Category key={item.id}>{item.name}</Category>
+        <Category key={item.id} onClick={() => onSelect(item.id)}>
+          {item.name}
+        </Category>
       ))}
     </Bar>
   );

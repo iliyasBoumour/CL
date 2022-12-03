@@ -1,9 +1,12 @@
 import { useContext, useEffect } from 'react';
-import { Offer } from '../lib/interfaces';
+import { OfferWithCategory } from '../lib/interfaces';
 import { getOffers } from '../states/actions/offers';
 import { Store } from '../states/Store';
 
-export const useOffers = (): { offers: Offer[] | null; error: any } => {
+export const useOffers = (): {
+  offers: OfferWithCategory[] | null;
+  error: any;
+} => {
   const { dispatch, state } = useContext(Store);
 
   useEffect(() => {
