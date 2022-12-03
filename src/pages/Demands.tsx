@@ -30,6 +30,7 @@ export const Demands = () => {
         title="Demandes"
         items={sideBarItems}
         onSelect={setShowArchived}
+        selectedId={showArchived}
       />
 
       <Container>

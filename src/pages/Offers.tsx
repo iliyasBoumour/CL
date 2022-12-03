@@ -46,6 +46,7 @@ export const Offers = () => {
             onSelect={setSelectedCategoryId}
             items={[{ id: '0', name: 'Tout' }, ...categories]}
             title="Categories"
+            selectedId={selectedCategoryId}
           />
           <Container>
             <Grid container spacing={7} mb={4}>
