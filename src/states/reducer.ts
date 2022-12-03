@@ -42,6 +42,13 @@ const reducer = (state: AppState, { type, payload }: Action) => {
       return { ...state, demands: { error: payload, data: [] } };
     }
 
+    case ActionsType.GET_MY_OFFERS: {
+      return { ...state, myOffers: { data: payload } };
+    }
+    case ActionsType.GET_MY_OFFERS_FAIL: {
+      return { ...state, myOffers: { error: payload, data: [] } };
+    }
+
     default:
       return state;
   }

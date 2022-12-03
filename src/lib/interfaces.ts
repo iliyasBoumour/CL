@@ -51,6 +51,10 @@ export interface AppState {
     data: Offer[];
     error?: string;
   };
+  myOffers: {
+    data: Offer[];
+    error?: string;
+  };
   demands: {
     data: RequestedOffer[];
     error?: string;
@@ -93,6 +97,9 @@ export enum ActionsType {
 
   GET_CATEGORIES = 'GET_CATEGORIES',
   GET_CATEGORIES_FAIL = 'GET_CATEGORIES_FAIL',
+
+  GET_MY_OFFERS = 'GET_MY_OFFERS',
+  GET_MY_OFFERS_FAIL = 'GET_MY_OFFERS_FAIL',
 
   GET_DEMANDS = 'GET_DEMANDS',
   GET_DEMANDS_FAIL = 'GET_DEMANDS_FAIL',

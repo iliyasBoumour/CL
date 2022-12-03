@@ -10,6 +10,7 @@ export const initialState: AppState = {
     user: user ? JSON.parse(user) : null,
   },
   offers: { data: [] },
+  myOffers: { data: [] },
   demands: { data: [] },
   categories: { data: [] },
 };
