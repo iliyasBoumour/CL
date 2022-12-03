@@ -27,6 +27,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     if (!user) {
+      setNavLinks(links);
       return;
     }
     if (user.role.includes(Roles.ROLE_REPRESENTANT)) {
@@ -35,9 +36,7 @@ export const Navbar = () => {
         { to: '/demands', name: 'Demandes' },
         { to: '/my-offers', name: 'Mes offres' },
       ]);
-      return;
     }
-    setNavLinks(links);
   }, [token, user]);
 
   return (
