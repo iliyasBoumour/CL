@@ -26,7 +26,11 @@ const reducer = (state: AppState, { type, payload }: Action) => {
     }
 
     case ActionsType.CREATE_OFFER: {
-      return { ...state, offers: { data: [...state.offers.data, payload] } };
+      return {
+        ...state,
+        offers: { data: [...state.offers.data, payload] },
+        myOffers: { data: [...state.myOffers.data, payload] },
+      };
     }
 
     case ActionsType.GET_CATEGORIES: {
