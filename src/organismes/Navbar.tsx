@@ -35,7 +35,9 @@ export const Navbar = () => {
         { to: '/demands', name: 'Demandes' },
         { to: '/my-offers', name: 'Mes offres' },
       ]);
+      return;
     }
+    setNavLinks(links);
   }, [token, user]);
 
   return (
