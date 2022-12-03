@@ -45,7 +45,7 @@ export const MaterialCard: FC<Props> = ({
             {description}
           </Description>
         </TextContainer>
-        {userRoles?.includes(Roles.ROLE_REPRESENTANT) || (
+        {!userRoles || userRoles?.includes(Roles.ROLE_REPRESENTANT) || (
           <ButtonContainer>
             <Button color="secondary" onClick={handleDemand}>
               Demander
