@@ -13,6 +13,7 @@ import { Offers } from './pages/Offers';
 import { Emitter } from './utility/EventLEmitter';
 import { UNAUTHORIZED } from './utility/fetcher';
 import { Demands } from './pages/Demands';
+import { MyOffers } from './pages/MyOffers';
 
 const App = () => {
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/demands" element={<Demands />} />
               <Route path="/offers" element={<Offers />} />
+              <Route path="/my-offers" element={<MyOffers />} />
               <Route path="/" element={<Home />} />
             </Routes>
           </Box>

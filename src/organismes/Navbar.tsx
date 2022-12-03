@@ -4,7 +4,7 @@ import { NavLink as Link, useNavigate } from 'react-router-dom';
 import { Store } from '../states/Store';
 import logo from '../assets/images/logo.png';
 import { NavMenu } from '../molecules/NavMenu';
-import { User } from '../lib/interfaces';
+import { Roles } from '../lib/interfaces';
 import { logout } from '../states/actions/authentication';
 import { ScrollToTop } from '../atoms/ScrollToTop';
 
@@ -15,7 +15,6 @@ const links = [{ to: '/offers', name: 'Offres' }];
 export const Navbar = () => {
   const navigate = useNavigate();
   const [navLinks, setNavLinks] = useState(links);
-  const [currentUser, setcurrentUser] = useState<User | null>(null);
   const { state, dispatch } = useContext(Store);
   const {
     auth: { token, user },
@@ -30,8 +29,13 @@ export const Navbar = () => {
     if (!user) {
       return;
     }
-    setcurrentUser(user);
-    setNavLinks([...links, { to: '/demands', name: 'Demandes' }]);
+    if (user.role.includes(Roles.ROLE_REPRESENTANT)) {
+      setNavLinks([
+        ...links,
+        { to: '/demands', name: 'Demandes' },
+        { to: '/my-offers', name: 'Mes offres' },
+      ]);
+    }
   }, [token, user]);
 
   return (
@@ -44,7 +48,7 @@ export const Navbar = () => {
               <img src={logo} alt="logo" />
             </NavLogo>
           </Link>
-          <NavMenu user={currentUser} links={navLinks} onLogout={signOut} />
+          <NavMenu user={user} links={navLinks} onLogout={signOut} />
         </Nav>
       </NavContainer>
     </Container>
