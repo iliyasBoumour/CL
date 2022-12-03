@@ -18,7 +18,7 @@ export const ToggleButton: FC<Props> = ({ options, onChange, value }) => {
 
   return (
     <ToggleButtonGroup
-      color="primary"
+      color="secondary"
       value={value}
       exclusive
       onChange={handleChange}

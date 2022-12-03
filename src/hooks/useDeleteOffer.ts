@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Store } from '../states/Store';
-import { postAPI } from '../utility/fetcher';
+import { deleteApi } from '../utility/fetcher';
 
 export const useDeleteOffer = () => {
   const {
@@ -11,9 +11,8 @@ export const useDeleteOffer = () => {
 
   const deleteOffer = async (offerId: string) => {
     try {
-      const data = await postAPI<boolean>(
+      const data = await deleteApi<boolean>(
         `/demandes/${offerId}/delete`,
-        {},
         token,
       );
       return data;

@@ -9,7 +9,6 @@ import { useDeleteOffer } from '../hooks/useDeleteOffer';
 import { useMyOffers } from '../hooks/useMyOffers';
 import { useOfferCategories } from '../hooks/useOfferCategories';
 import { Popup } from '../molecules/Popup';
-import { SIDEBAR_WIDTH } from '../molecules/SideBar';
 import { MyOffersTable } from '../organismes/MyOffersTable';
 import { createOffer } from '../states/actions/createOffer';
 import { Store } from '../states/Store';
@@ -18,7 +17,7 @@ import { ToggleButton } from '../molecules/ToggleButton';
 export const MyOffers = () => {
   const [showCreationPopup, setShowCreationPopup] = useState(false);
   const [filtredOffers, setFiltredOffers] = useState<MyOffersType[]>([]);
-  const [filters, setFilters] = useState<MyOffersFilters>(MyOffersFilters.ALL);
+  const [filter, setFilter] = useState<MyOffersFilters>(MyOffersFilters.ALL);
   const [formCategories, setFormCategories] = useState<string[]>([]);
   const { categories } = useOfferCategories();
   const deleteOffer = useDeleteOffer();
@@ -46,14 +45,14 @@ export const MyOffers = () => {
 
   useEffect(() => {
     if (!myOffers) return;
-    switch (filters) {
+    switch (filter) {
       case MyOffersFilters.ARCHIVED:
         setFiltredOffers(myOffers.filter((offer) => offer.archived));
         break;
       default:
         setFiltredOffers(myOffers);
     }
-  }, [myOffers, filters]);
+  }, [myOffers, filter]);
 
   return (
     <Container>
@@ -105,8 +104,8 @@ export const MyOffers = () => {
 
         <ToggleButton
           options={[MyOffersFilters.ALL, MyOffersFilters.ARCHIVED]}
-          onChange={(value) => setFilters(value as MyOffersFilters)}
-          value={filters}
+          onChange={(value) => setFilter(value as MyOffersFilters)}
+          value={filter}
         />
       </ActionsContainer>
       {error ? (
@@ -123,7 +122,6 @@ const Container = styled('div')`
   flex-direction: column;
   gap: 2rem;
   margin-top: 2rem;
-  margin-left: ${SIDEBAR_WIDTH};
   padding: 0 2rem;
 `;
 

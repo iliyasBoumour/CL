@@ -36,12 +36,12 @@ export const MyOffersTable: FC<Props> = ({ offers, deleteOffer }) => {
               <TableCell>{offer.description}</TableCell>
               <TableCell align="right">
                 <Button
-                  variant="contained"
-                  color="success"
+                  variant="outlined"
+                  color="error"
                   size="small"
                   onClick={() => deleteOffer(offer.id)}
                 >
-                  Accepter
+                  Supprimer
                 </Button>
               </TableCell>
             </TableRow>

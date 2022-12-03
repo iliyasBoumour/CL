@@ -24,8 +24,8 @@ export interface MyOffers extends Offer {
 }
 
 export enum MyOffersFilters {
-  ALL = 'ALL',
-  ARCHIVED = 'ARCHIVED',
+  ALL = 'Tout',
+  ARCHIVED = 'Archivés',
 }
 
 export interface OfferWithCategory extends Offer {
