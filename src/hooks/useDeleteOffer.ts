@@ -11,10 +11,7 @@ export const useDeleteOffer = () => {
 
   const deleteOffer = async (offerId: string) => {
     try {
-      const data = await deleteApi<boolean>(
-        `/demandes/${offerId}/delete`,
-        token,
-      );
+      const data = await deleteApi<boolean>(`/offers/${offerId}`, token);
       return data;
     } catch (err: any) {
       return null;
