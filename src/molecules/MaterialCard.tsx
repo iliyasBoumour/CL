@@ -4,9 +4,17 @@ import { Box, styled, Typography } from '@mui/material';
 import { Image } from '../atoms/Image';
 import { Button } from '../atoms/Button';
 import { useDemandOffer } from '../hooks/useDemandOffer';
-import { Offer } from '../lib/interfaces';
+import { Offer, Roles } from '../lib/interfaces';
 
-export const MaterialCard: FC<Offer> = ({ id, title, description }) => {
+interface Props {
+  offer: Offer;
+  userRoles: Roles[] | undefined;
+}
+
+export const MaterialCard: FC<Props> = ({
+  offer: { id, title, description },
+  userRoles,
+}) => {
   const { requestOffer } = useDemandOffer();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -37,11 +45,13 @@ export const MaterialCard: FC<Offer> = ({ id, title, description }) => {
             {description}
           </Description>
         </TextContainer>
-        <ButtonContainer>
-          <Button color="secondary" onClick={handleDemand}>
-            Demander
-          </Button>
-        </ButtonContainer>
+        {userRoles?.includes(Roles.ROLE_REPRESENTANT) || (
+          <ButtonContainer>
+            <Button color="secondary" onClick={handleDemand}>
+              Demander
+            </Button>
+          </ButtonContainer>
+        )}
       </Content>
     </MaterialContainer>
   );

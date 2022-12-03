@@ -49,6 +49,15 @@ const reducer = (state: AppState, { type, payload }: Action) => {
       return { ...state, myOffers: { error: payload, data: [] } };
     }
 
+    case ActionsType.DELETE_OFFER: {
+      return {
+        ...state,
+        myOffers: {
+          data: state.myOffers.data.filter((offer) => offer.id !== payload),
+        },
+      };
+    }
+
     default:
       return state;
   }

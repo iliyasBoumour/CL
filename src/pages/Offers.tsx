@@ -1,15 +1,20 @@
 import { Box, styled, Grid, Alert } from '@mui/material';
-import React, { useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { Loader } from '../atoms/Loader';
 import { SearchField } from '../atoms/SearchField';
 import { useOfferCategories } from '../hooks/useOfferCategories';
 import { useOffers } from '../hooks/useOffers';
 import { MaterialCard } from '../molecules/MaterialCard';
 import { SideBar, SIDEBAR_WIDTH } from '../molecules/SideBar';
+import { Store } from '../states/Store';
 
 export const Offers = () => {
   const [searchKey, setSearchKey] = useState('');
-
+  const {
+    state: {
+      auth: { user },
+    },
+  } = useContext(Store);
   const { offers, error } = useOffers();
   const { categories, error: errorCategories } = useOfferCategories();
 
@@ -43,7 +48,7 @@ export const Offers = () => {
             <Grid container spacing={7} mb={4}>
               {filteredOffers.map((p) => (
                 <Grid item key={p.title} xs={12} md={6}>
-                  <MaterialCard {...p} />
+                  <MaterialCard offer={p} userRoles={user?.role} />
                 </Grid>
               ))}
             </Grid>

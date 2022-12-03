@@ -5,7 +5,6 @@ import { MyOffers as MyOffersType, MyOffersFilters } from '../lib/interfaces';
 import { Button } from '../atoms/Button';
 import { ControlledTextField } from '../atoms/ControlledTextField';
 import { TextField } from '../atoms/TextField';
-import { useDeleteOffer } from '../hooks/useDeleteOffer';
 import { useMyOffers } from '../hooks/useMyOffers';
 import { useOfferCategories } from '../hooks/useOfferCategories';
 import { Popup } from '../molecules/Popup';
@@ -13,6 +12,7 @@ import { MyOffersTable } from '../organismes/MyOffersTable';
 import { createOffer } from '../states/actions/createOffer';
 import { Store } from '../states/Store';
 import { ToggleButton } from '../molecules/ToggleButton';
+import { deleteOffer } from '../states/actions/deleteOffer';
 
 export const MyOffers = () => {
   const [showCreationPopup, setShowCreationPopup] = useState(false);
@@ -20,7 +20,6 @@ export const MyOffers = () => {
   const [filter, setFilter] = useState<MyOffersFilters>(MyOffersFilters.ALL);
   const [formCategories, setFormCategories] = useState<string[]>([]);
   const { categories } = useOfferCategories();
-  const deleteOffer = useDeleteOffer();
   const { myOffers, error } = useMyOffers();
   const {
     handleSubmit,
@@ -34,6 +33,13 @@ export const MyOffers = () => {
     },
     dispatch,
   } = useContext(Store);
+
+  const removeOffer = useCallback(
+    (id: string) => {
+      deleteOffer(dispatch, id, token);
+    },
+    [dispatch, token],
+  );
 
   const createNewOffer = useCallback(
     (data: any) => {
@@ -111,7 +117,7 @@ export const MyOffers = () => {
       {error ? (
         <Alert severity="error">{error}</Alert>
       ) : (
-        <MyOffersTable offers={filtredOffers} deleteOffer={deleteOffer} />
+        <MyOffersTable offers={filtredOffers} deleteOffer={removeOffer} />
       )}
     </Container>
   );
