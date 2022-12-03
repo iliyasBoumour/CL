@@ -4,7 +4,7 @@ import { handleErrors } from './handleErrors';
 
 export const getMyOffers = async (dispatch: Dispatch, token: string | null) => {
   try {
-    const data = await fetchAPI<MyOffers[]>(`/my-offers`, token);
+    const data = await fetchAPI<MyOffers[]>(`/offers/my-offers`, token);
     dispatch({
       type: ActionsType.GET_MY_OFFERS,
       payload: data,
